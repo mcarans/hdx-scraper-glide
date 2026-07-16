@@ -113,7 +113,8 @@ class Pipeline:
             for event_date, clean_event in dated_events:
                 existing_min = self._country_startdate.get(countryiso3)
                 if not existing_min or event_date < existing_min:
-                    self._country_startdate[countryiso3] = event_date
+                    if event_date.year > 1900:
+                        self._country_startdate[countryiso3] = event_date
                 existing_max = self._country_enddate.get(countryiso3)
                 if not existing_max or event_date > existing_max:
                     self._country_enddate[countryiso3] = event_date
